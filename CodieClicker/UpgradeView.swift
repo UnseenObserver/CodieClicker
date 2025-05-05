@@ -9,7 +9,7 @@ import SwiftUICore
 import SwiftUI
 
 struct UpgradeView: View {
-    @Binding var clicker: Clickable
+    @ObservedObject var clicker: Clickable
     
     var body: some View {
         HStack{

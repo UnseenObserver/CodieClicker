@@ -9,7 +9,8 @@ import SwiftUICore
 import SwiftUI
 
 struct ClickerView: View {
-    @Binding var clicker: Clickable
+    @ObservedObject var clicker: Clickable
+    
     
     var body: some View {
         ZStack{
@@ -19,7 +20,7 @@ struct ClickerView: View {
                         .fill(clicker.colorOfClicker)
                         .frame(width: 200, height: 200)
                         .onTapGesture {
-                            
+                            clicker.click()
                         }
                 }
             }

@@ -11,6 +11,7 @@ import SwiftUI
 struct BuyView: View {
     @Binding var clicker: Clickable
     
+    
     var body: some View {
         HStack{
             VStack{
