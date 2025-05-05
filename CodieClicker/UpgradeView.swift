@@ -9,8 +9,17 @@ import SwiftUICore
 import SwiftUI
 
 struct UpgradeView: View {
+    @Binding var clicker: Clickable
     
     var body: some View {
-        Text("Hello")
+        HStack{
+            VStack{
+                Text("Hellow")
+                Button("Upgrade") {
+                    clicker.upgradeAdd += 1
+                    
+                }
+            }
+        }
     }
 }

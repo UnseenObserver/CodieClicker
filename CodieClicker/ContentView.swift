@@ -9,26 +9,24 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @State var amountOfData: Int = 0
-    @State var upgradeAdd: Int = 1
-    @State var upgradeMult: Int = 1
     @State var selectedTab: Int = 1
+    @State var clicker: Clickable = Clickable()
     
 
     var body: some View {
         VStack {
             HStack{
-                Text(String(amountOfData))
+                Text(String(clicker.amountOfData))
                     .font(.title)
                     
             }
             
             TabView(selection: $selectedTab) {
                 Tab("Upgrade", systemImage: "pencil", value: 0) {
-                    UpgradeView()
+                    UpgradeView(clicker: $clicker)
                 }
                 Tab("", systemImage: "pencil",value: 1) {
-                    ClickerView(amountOfData: $amountOfData, upgradeAdd: $upgradeAdd, upgradeMult: $upgradeMult)
+                    ClickerView(clicker: $clicker)
                 }
                 Tab("Buy", systemImage: "pencil", value: 2) {
                     
@@ -39,8 +37,9 @@ struct ContentView: View {
     }
 
    
+   
 }
 
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView()
 }

@@ -9,8 +9,16 @@ import SwiftUICore
 import SwiftUI
 
 struct BuyView: View {
+    @Binding var clicker: Clickable
     
     var body: some View {
-        Text("Hellow")
+        HStack{
+            VStack{
+                Text("Hellow")
+                Button("Upgrade") {
+                    
+                }
+            }
+        }
     }
 }

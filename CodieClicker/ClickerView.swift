@@ -9,27 +9,20 @@ import SwiftUICore
 import SwiftUI
 
 struct ClickerView: View {
-    @Binding var amountOfData: Int
-    @Binding var upgradeAdd: Int
-    @Binding var upgradeMult: Int
-    @State var colorOfClicker: Color = .blue
+    @Binding var clicker: Clickable
     
     var body: some View {
         ZStack{
             HStack{
                 VStack{
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(colorOfClicker)
+                        .fill(clicker.colorOfClicker)
                         .frame(width: 200, height: 200)
                         .onTapGesture {
-                            click()
+                            
                         }
                 }
             }
         }
-    }
-    
-    func click() {
-        amountOfData = amountOfData + (upgradeAdd * upgradeMult)
     }
 }
