@@ -25,7 +25,7 @@ struct ContentView: View {
             
             TabView(selection: $selectedTab) {
                 Tab("Upgrade", systemImage: "pencil", value: 0) {
-                    
+                    UpgradeView()
                 }
                 Tab("", systemImage: "pencil",value: 1) {
                     ClickerView(amountOfData: $amountOfData, upgradeAdd: $upgradeAdd, upgradeMult: $upgradeMult)
