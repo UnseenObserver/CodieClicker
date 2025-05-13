@@ -16,9 +16,10 @@ struct ClickerView: View {
         ZStack{
             HStack{
                 VStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(clicker.colorOfClicker)
-                        .frame(width: 200, height: 200)
+                    Image(systemName: "bolt.circle.fill")
+                        .resizable()
+                        .foregroundColor(clicker.colorOfClicker)
+                        .frame(width: 300, height: 300)
                         .onTapGesture {
                             clicker.click()
                         }

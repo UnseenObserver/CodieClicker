@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @State var selectedTab: Int = 1
     @StateObject var clicker: Clickable = Clickable()
-    @State var autoClickON: Bool = false
+    @State var autoClickerON: Bool = false
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
     
@@ -21,22 +21,18 @@ struct ContentView: View {
                 Text(String("\(clicker.amountOfData)dP"))
                     .font(.title)
                     .onReceive(timer) { _ in
-                        if autoClickON {
+                        if autoClickerON {
                             clicker.click()
                         }
                     }
             }
             
             TabView(selection: $selectedTab) {
-                Tab("Upgrade", systemImage: "pencil", value: 0) {
-                    UpgradeView(clicker: clicker)
+                Tab("", systemImage: "arrowshape.up", value: 0) {
+                    UpgradeView(clicker: clicker, autoClickerON: $autoClickerON)
                 }
-                Tab("", systemImage: "pencil",value: 1) {
+                Tab("", systemImage: "bolt.circle.fill",value: 1) {
                     ClickerView(clicker: clicker)
-                    
-                }
-                Tab("Buy", systemImage: "pencil", value: 2) {
-                    BuyView(clicker: clicker, autoClickOn: $autoClickON)
                 }
             }
         }
