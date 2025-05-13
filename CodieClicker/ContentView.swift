@@ -12,13 +12,13 @@ struct ContentView: View {
     @State var selectedTab: Int = 1
     @StateObject var clicker: Clickable = Clickable()
     @State var autoClickON: Bool = false
-    @State var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
     
     var body: some View {
         VStack {
             HStack{
-                Text(String(clicker.amountOfData))
+                Text(String("\(clicker.amountOfData)dP"))
                     .font(.title)
                     .onReceive(timer) { _ in
                         if autoClickON {
