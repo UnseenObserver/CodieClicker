@@ -31,6 +31,7 @@ struct upgrade: Hashable {
 struct UpgradeView: View {
     @ObservedObject var clicker: Clickable
     @State var upgradesAvaliable: [upgrade] = []
+    @Binding var autoClickerON: Bool
     
     
     var body: some View {
