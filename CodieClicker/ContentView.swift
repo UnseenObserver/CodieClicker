@@ -11,7 +11,8 @@ import CoreData
 struct ContentView: View {
     @State var selectedTab: Int = 1
     @StateObject var clicker: Clickable = Clickable()
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State var autoClickON: Bool = false
+    @State var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     
     var body: some View {
@@ -20,8 +21,9 @@ struct ContentView: View {
                 Text(String(clicker.amountOfData))
                     .font(.title)
                     .onReceive(timer) { _ in
-                        clicker.click()
-                        print("Timer fired at \(Date())")
+                        if autoClickON {
+                            clicker.click()
+                        }
                     }
             }
             
@@ -34,7 +36,7 @@ struct ContentView: View {
                     
                 }
                 Tab("Buy", systemImage: "pencil", value: 2) {
-                    
+                    BuyView(clicker: clicker, autoClickOn: $autoClickON)
                 }
             }
         }
