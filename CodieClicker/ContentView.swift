@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @State var selectedTab: Int = 1
     @StateObject var clicker: Clickable = Clickable()
-    @State var autoClickerON: Bool = true
+    @State var autoClickerON: Bool = false
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State var isClicked: Bool = false
     

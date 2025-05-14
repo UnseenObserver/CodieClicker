@@ -87,5 +87,12 @@ struct UpgradeView: View {
                 }
             }
         }
+        .onAppear() {
+            makeArray()
+        }
+    }
+    
+    func makeArray() {
+        upgradesAvaliable = [upgrade(name: "Add 1", add: true, value: 1, price: 10), upgrade(name: "Add 2", add: true, value: 2, price: 10), upgrade(name: "Add 3", add: true, value: 3, price: 10), upgrade(name: "Multi 2", add: false, value: 2, price: 20)]
     }
 }
