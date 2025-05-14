@@ -6,8 +6,38 @@
 //
 
 import SwiftUICore
+import SwiftUI
 
 struct Tools {
  
     
+}
+
+class clickerViewModel: ObservableObject {
+    @Published var scale = 1.0
+    
+    var isClicked: Bool
+    
+    var dataIcon: String {
+        isClicked ? "bolt.circle.fill" : "bolt.circle"
+    }
+    
+    var dataIconColor: Color {
+        isClicked ? .yellow : .blue
+    }
+    
+    func toggleClickWithAnimation() {
+        withAnimation(.linear(duration: 0.05)) {
+            scale = 1.2
+            isClicked = true
+        }
+        withAnimation(.linear(duration: 0.05).delay(0.1)) {
+            scale = 1.0
+            isClicked = false
+        }
+    }
+    
+    init(isClicked: Bool) {
+        self.isClicked = isClicked
+    }
 }

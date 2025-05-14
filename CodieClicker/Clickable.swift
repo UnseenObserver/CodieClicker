@@ -12,8 +12,8 @@ import SwiftData
 @Model
 class Clickable: ObservableObject {
     var amountOfData: Int
-    var upgradeAdd: Int
-    var upgradeMult: Int
+    var upgradeAdd: Double
+    var upgradeMult: Double
     var red: Double
     var green: Double
     var blue: Double
@@ -22,7 +22,7 @@ class Clickable: ObservableObject {
         Color(red: red, green: green, blue: blue, opacity: alpha)
     }
     
-    init(amountOfData: Int, upgradeAdd: Int, upgradeMult: Int, red: Double, green: Double, blue: Double, alpha: Double) {
+    init(amountOfData: Int, upgradeAdd: Double, upgradeMult: Double, red: Double, green: Double, blue: Double, alpha: Double) {
         self.amountOfData = amountOfData
         self.upgradeAdd = upgradeAdd
         self.upgradeMult = upgradeMult
@@ -43,7 +43,17 @@ class Clickable: ObservableObject {
     }
     
     func click() {
-        amountOfData = amountOfData + (upgradeAdd * upgradeMult)
+        amountOfData = amountOfData + Int(upgradeAdd * upgradeMult)
+    }
+    
+    func amountOfDataFormat() -> String {
+        var formatedStringAmount: String = ""
+        
+        if amountOfData >= 1000000 {
+            formatedStringAmount = amountOfData.formatted(.number.notation(.compactName))
+        }
+        
+        return formatedStringAmount
     }
     
 }
