@@ -1,5 +1,5 @@
 //
-//  upgradeCell.swift
+//  partCell.swift
 //  CodieClicker
 //
 //  Created by HPro2 on 5/13/25.
@@ -7,55 +7,57 @@
 
 import SwiftUICore
 
-struct upgradeCell: View {
-    var upgrade: upgrade
+struct partCell: View {
+    var part: part
     
     var body: some View {
         HStack {
             VStack(alignment: .center) {
-                if upgrade.add {
-                    Image(systemName: "plus")
+                switch part.function {
+                case "autoClicker":
+                    Image(systemName: "cursorarrow.click.2")
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
-                } else {
-                    Image(systemName: "multiply")
+                default:
+                    Image(systemName: "exclamationmark.warninglight.fill")
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
                 }
-                Text(upgrade.name)
+                Text(part.name)
             }
             Spacer()
             VStack {
-                if upgrade.add {
-                    Text("Add")
-                } else {
-                    Text("Multiply")
+                switch part.function {
+                case "autoClicker":
+                    Text("Auto Clicker")
+                    Text("2 Clicks/Sec")
+                default:
+                    Text("Error")
                 }
-                Text(String(upgrade.value))
+                
+            
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(String("\(upgrade.price)dP"))
+                Text(String("\(part.price)dP"))
             }
         }
         .frame(height: 100)
     }
 }
 
-struct upgrade: Hashable {
+struct part: Hashable {
     
     var name: String
-    var add: Bool
-    var value: Double
+    var function: String
     var price: Int
     var id: Int
     
-    init(name: String, add: Bool, value: Double, price: Int, id: Int) {
+    init(name: String, function: String, price: Int, id: Int) {
         self.name = name
-        self.add = add
-        self.value = value
+        self.function = function
         self.price = price
         self.id = id
     }
