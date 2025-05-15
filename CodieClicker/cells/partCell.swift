@@ -8,7 +8,7 @@
 import SwiftUICore
 
 struct partCell: View {
-    var part: part
+    var part: Part
     
     var body: some View {
         HStack {
@@ -48,22 +48,4 @@ struct partCell: View {
     }
 }
 
-struct part: Hashable {
-    
-    var name: String
-    var function: String
-    var price: Int
-    var id: Int
-    
-    init(name: String, function: String, price: Int, id: Int) {
-        self.name = name
-        self.function = function
-        self.price = price
-        self.id = id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
-    
-}
+

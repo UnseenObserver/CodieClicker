@@ -8,7 +8,7 @@
 import SwiftUICore
 
 struct upgradeCell: View {
-    var upgrade: upgrade
+    var upgrade: Upgrade
     
     var body: some View {
         HStack {
@@ -44,24 +44,4 @@ struct upgradeCell: View {
     }
 }
 
-struct upgrade: Hashable {
-    
-    var name: String
-    var add: Bool
-    var value: Double
-    var price: Int
-    var id: Int
-    
-    init(name: String, add: Bool, value: Double, price: Int, id: Int) {
-        self.name = name
-        self.add = add
-        self.value = value
-        self.price = price
-        self.id = id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
-    
-}
+

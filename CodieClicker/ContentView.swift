@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreData
 
 struct ContentView: View {
@@ -14,6 +15,8 @@ struct ContentView: View {
     @State var autoClickerON: Bool = false
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State var isClicked: Bool = false
+    
+    @Environment(\.modelContext) var modelContext
     
     
     var body: some View {
