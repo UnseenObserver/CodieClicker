@@ -13,18 +13,18 @@ struct UpgradeView: View {
     @Binding var autoClickerON: Bool
     
     @State var upgrades: [String:upgrade] = [
-        "Add1" :upgrade(name: "Add 1", add: true, value: 1, price: 10, id: 0),
-        "Add2" :upgrade(name: "Add 2", add: true, value: 2, price: 10, id: 1),
-        "Add3" :upgrade(name: "Add 3", add: true, value: 3, price: 10, id: 2),
-        "Mult2" :upgrade(name: "Multi 2", add: false, value: 4, price: 20, id: 3),
-        "Add10" :upgrade(name: "Add 1", add: true, value: 1, price: 10, id: 4),
-        "Add20" :upgrade(name: "Add 2", add: true, value: 2, price: 10, id: 5),
-        "Add30" :upgrade(name: "Add 3", add: true, value: 3, price: 10, id: 6),
-        "Mult20" :upgrade(name: "Multi 2", add: false, value: 4, price: 20, id: 7),
-        "Add11" :upgrade(name: "Add 1", add: true, value: 1, price: 10, id: 8),
-        "Add21" :upgrade(name: "Add 2", add: true, value: 2, price: 10, id: 9),
-        "Add31" :upgrade(name: "Add 3", add: true, value: 3, price: 10, id: 10),
-        "Mult21" :upgrade(name: "Multi 2", add: false, value: 4, price: 20, id: 11),
+        "AAAdd1" :upgrade(name: "Add 1", add: true, value: 1, price: 20, id: 0),
+        "AAMult1" :upgrade(name: "Mult 1", add: false, value: 2, price: 50, id: 1),
+        "ABAdd2" :upgrade(name: "Add 2", add: true, value: 5, price: 200, id: 2),
+        "ABMult2" :upgrade(name: "Mult 2", add: false, value: 3, price: 500, id: 3),
+        "ACAdd3" :upgrade(name: "Add 3", add: true, value: 1, price: 1000, id: 4),
+        "ACMult3" :upgrade(name: "Mult 3", add: false, value: 5, price: 5000, id: 5),
+        "ADAdd4" :upgrade(name: "Add 4", add: true, value: 3, price: 10, id: 6),
+        "ADMult4" :upgrade(name: "Mult 4", add: false, value: 4, price: 20, id: 7),
+        "AEAdd5" :upgrade(name: "Add 5", add: true, value: 1, price: 10, id: 8),
+        "AEMult5" :upgrade(name: "Mult 5", add: false, value: 2, price: 10, id: 9),
+        "AFAdd6" :upgrade(name: "Add 6", add: true, value: 3, price: 10, id: 10),
+        "AFMult6" :upgrade(name: "Mult 6", add: false, value: 4, price: 20, id: 11),
         "Add12" :upgrade(name: "Add 1", add: true, value: 1, price: 10, id: 12),
         "Add22" :upgrade(name: "Add 2", add: true, value: 2, price: 10, id: 13),
         "Add33" :upgrade(name: "Add 3", add: true, value: 3, price: 10, id: 14),
@@ -34,8 +34,26 @@ struct UpgradeView: View {
         "Add37" :upgrade(name: "Add 3", add: true, value: 3, price: 10, id: 18),
         "Mult27" :upgrade(name: "Multi 2", add: false, value: 100000, price: 20, id: 19)]
     
+    @State var addUpgrades: [String:upgrade] = [
+        "AAAdd1" :upgrade(name: "Add 1", add: true, value: 1, price: 20, id: 0),
+        "AAMult1" :upgrade(name: "Mult 1", add: false, value: 2, price: 50, id: 1),
+        "ABAdd2" :upgrade(name: "Add 2", add: true, value: 5, price: 200, id: 2),
+        "ABMult2" :upgrade(name: "Mult 2", add: false, value: 3, price: 500, id: 3),
+        "ACAdd3" :upgrade(name: "Add 3", add: true, value: 1, price: 1000, id: 4),
+        ]
+    
+    @State var multUpgrades: [String:upgrade] = [
+        "AAAdd1" :upgrade(name: "Add 1", add: true, value: 1, price: 20, id: 0),
+        "AAMult1" :upgrade(name: "Mult 1", add: false, value: 2, price: 50, id: 1),
+        "ABAdd2" :upgrade(name: "Add 2", add: true, value: 5, price: 200, id: 2),
+        "ABMult2" :upgrade(name: "Mult 2", add: false, value: 3, price: 500, id: 3),
+        "ACAdd3" :upgrade(name: "Add 3", add: true, value: 1, price: 1000, id: 4),
+        "ACMult3" :upgrade(name: "Mult 3", add: false, value: 5, price: 5000, id: 5),
+    ]
+
+    
     @State var parts: [String:part] = [
-        "aC" :part(name: "Auto Clicker", function: "autoClicker", price: 100, id: 0)
+        "aC" :part(name: "Auto Clicker", function: "autoClicker", price: 1000, id: 0)
     ]
     
     var upgradesAvaliable: [String] {
