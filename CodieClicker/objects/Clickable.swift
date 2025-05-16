@@ -11,6 +11,7 @@ import SwiftData
 
 @Model
 class Clickable: ObservableObject {
+    
     var amountOfData: Int
     var upgradeAdd: Double
     var upgradeMult: Double
@@ -22,14 +23,14 @@ class Clickable: ObservableObject {
         Color(red: red, green: green, blue: blue, opacity: alpha)
     }
     
-    init(amountOfData: Int, upgradeAdd: Double, upgradeMult: Double, red: Double, green: Double, blue: Double, alpha: Double) {
+    init(amountOfData: Int, upgradeAdd: Double, upgradeMult: Double) {
         self.amountOfData = amountOfData
         self.upgradeAdd = upgradeAdd
         self.upgradeMult = upgradeMult
-        self.red = red
-        self.green = green
-        self.blue = blue
-        self.alpha = alpha
+        self.red = 0
+        self.green = 0
+        self.blue = 0.5
+        self.alpha = 1
     }
     
     init() {
@@ -42,8 +43,11 @@ class Clickable: ObservableObject {
         self.alpha = 1
     }
     
+    
+    
     func click() {
         amountOfData = amountOfData + Int(upgradeAdd * upgradeMult)
+        
     }
     
     func amountOfDataFormat() -> String {

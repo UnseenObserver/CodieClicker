@@ -8,13 +8,21 @@
 import SwiftUI
 import SwiftData
 import CoreData
+import UIKit
 
 struct ContentView: View {
-    @State var selectedTab: Int = 1
-    @StateObject var clicker: Clickable = Clickable()
-    @State var autoClickerON: Bool = false
+//    let myDefaults = UserDefaults(suiteName: "com.jonesclass.pawloski.codieclicker")
+    
+    @AppStorage("selectedtab") var selectedTab: Int = 1
+    @State var clicker: Clickable
+    @AppStorage("clicker.amountofdata") var clickerAmountOfData: Int?
+    @AppStorage("clicker.upgradeadd") var clickerUpgradeAdd: Double?
+    @AppStorage("clicker.upgrademult") var clickerUpgradeMult: Double?
+    @AppStorage("autoclicker") var autoClickerON: Bool = false
+    @State var autoSave = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    @State var isClicked: Bool = false
+    @AppStorage("isclicked") var isClicked: Bool = false
+    @State var holdOn: String = "off"
     
     @Environment(\.modelContext) var modelContext
     
@@ -30,6 +38,11 @@ struct ContentView: View {
                             clicker.click()
                         }
                     }
+                    .onReceive(autoSave) { _ in
+                        clickerAmountOfData = clicker.amountOfData
+                        clickerUpgradeAdd = clicker.upgradeAdd
+                        clickerUpgradeMult = clicker.upgradeMult
+                    }
                 Text(String(clicker.upgradeMult))
             }
             
@@ -38,21 +51,28 @@ struct ContentView: View {
                     UpgradeView(clicker: clicker, autoClickerON: $autoClickerON)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
-                    ClickerView(clicker: clicker, isClicked: isClicked, toggleClick: toggleClick)
+                    ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn)
                 }
             }
         }
+        .onAppear() {
+            if let clickerAmountOfData: Int = clickerAmountOfData {
+                clicker.amountOfData = clickerAmountOfData
+            }
+            if let clickerUpgradeAdd: Double = clickerUpgradeAdd {
+                clicker.upgradeAdd = clickerUpgradeAdd
+            }
+            if let clickerUpgradeMult: Double = clickerUpgradeMult {
+                clicker.upgradeMult = clickerUpgradeMult
+            }
+            
+        }
         .background(.blue)
-    }
-    
-    func toggleClick() {
-        isClicked = !isClicked
-    }
-    
+    }  
     
     
 }
 
 #Preview {
-    ContentView()
+    ContentView(clicker: Clickable())
 }

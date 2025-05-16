@@ -9,6 +9,8 @@ import SwiftUICore
 import SwiftUI
 
 struct UpgradeView: View {
+    let myDefaults = UserDefaults(suiteName: "com.jonesclass.pawloski.codieclicker")
+    
     @ObservedObject var clicker: Clickable
     @Binding var autoClickerON: Bool
     @Environment(\.modelContext) var modelContext
@@ -97,9 +99,6 @@ struct UpgradeView: View {
                     }
                 }
             }
-        }
-        .onAppear() {
-            try? modelContext.save()
         }
     }
     
