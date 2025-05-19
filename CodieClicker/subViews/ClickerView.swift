@@ -13,7 +13,6 @@ struct ClickerView: View {
     @Binding var holdOn: String
     @State var isHolding: Bool = false
     @State private var timer: Timer? = nil
-    
     @ObservedObject private var viewModel: clickerViewModel
     @ObservedObject var clicker: Clickable
     @Environment(\.modelContext) private var modelContext

@@ -23,6 +23,7 @@ struct ContentView: View {
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @AppStorage("isclicked") var isClicked: Bool = false
     @State var holdOn: String = "off"
+    @State var timerBool: Bool = false
     
     @Environment(\.modelContext) var modelContext
     
@@ -34,6 +35,7 @@ struct ContentView: View {
                 Text("\(clicker.amountOfData.formatted(.number.notation(.compactName)))dP")
                     .font(.title)
                     .onReceive(timer) { _ in
+                        toggleTimer(timerBool: timerBool)
                         if autoClickerON {
                             clicker.click()
                         }
@@ -51,7 +53,10 @@ struct ContentView: View {
                     UpgradeView(clicker: clicker, autoClickerON: $autoClickerON)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
-                    ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn)
+                    ClickerView(clicker: clicker, isClicked: isClicked, holdOnN: $holdOn)
+                }
+                Tab("", systemImage: "desktopcomputer",value: 2) {
+                    ComputerView(timerBool: $timerBool)
                 }
             }
         }
@@ -70,7 +75,9 @@ struct ContentView: View {
         .background(.blue)
     }  
     
-    
+    func toggleTimer(timerBool: Bool) {
+        self.timerBool = !timerBool
+    }
 }
 
 #Preview {

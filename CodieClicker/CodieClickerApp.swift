@@ -11,7 +11,7 @@ import SwiftUI
 struct CodieClickerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(clicker: Clickable())
         }
     }
 }
