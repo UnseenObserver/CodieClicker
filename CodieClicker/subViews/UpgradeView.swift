@@ -38,10 +38,13 @@ struct UpgradeView: View {
     @State var parts: [String:Part] = [
         "aC" :Part(name: "Auto Clicker", function: "autoClicker", price: 100, id: 0)
     ]
+    var upgradesAvaliable: [String] {
+        upgrades.keys.sorted()
+    }
     
-    @AppStorage var upgradesAvaliable: [String]
-    
-    @AppStorage var partsAvaliable: [String]
+    var partsAvaliable: [String] {
+        parts.keys.sorted()
+    }
     
     
     var body: some View {
@@ -91,10 +94,6 @@ struct UpgradeView: View {
                     }
                 }
             }
-        }
-        .onAppear() {
-            upgradesAvaliable = upgrades.keys.sorted()
-            partsAvaliable = parts.keys.sorted()
         }
     }
     
