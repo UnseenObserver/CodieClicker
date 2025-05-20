@@ -67,6 +67,7 @@ struct ClickerView: View {
                             Text("Error")
                         }
                     }
+                    
                 }
             }
         }
