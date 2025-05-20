@@ -45,9 +45,9 @@ class clickerViewModel: ObservableObject {
 class upgradeViewModel: ObservableObject {
     @Published var scale = 1.0
     @Binding var isTicked: Bool
-    var upgradeIcon: Image
+    var upgradeIcon: String
         
-    func toggleClickWithAnimation() {
+    func toggleSizeWithAnimation() {
         withAnimation(.linear(duration: 0.05)) {
             scale = 1.2
             isTicked = true
@@ -58,7 +58,7 @@ class upgradeViewModel: ObservableObject {
         }
     }
     
-    init(isTicked: Binding<Bool>, upgradeIcon: Image) {
+    init(isTicked: Binding<Bool>, upgradeIcon: String) {
         _isTicked = isTicked
         self.upgradeIcon = upgradeIcon
     }

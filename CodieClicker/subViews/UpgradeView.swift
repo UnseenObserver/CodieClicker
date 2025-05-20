@@ -9,8 +9,6 @@ import SwiftUICore
 import SwiftUI
 
 struct UpgradeView: View {
-    let myDefaults = UserDefaults(suiteName: "com.jonesclass.pawloski.codieclicker")
-    
     @ObservedObject var clicker: Clickable
     @Binding var autoClickerON: Bool
     @Environment(\.modelContext) var modelContext
@@ -41,15 +39,9 @@ struct UpgradeView: View {
         "aC" :Part(name: "Auto Clicker", function: "autoClicker", price: 100, id: 0)
     ]
     
-    var upgradesAvaliable: [String] {
-        upgrades.keys
-            .sorted()
-    }
+    @AppStorage var upgradesAvaliable: [String]
     
-    var partsAvaliable: [String] {
-        parts.keys
-            .sorted()
-    }
+    @AppStorage var partsAvaliable: [String]
     
     
     var body: some View {
@@ -99,6 +91,10 @@ struct UpgradeView: View {
                     }
                 }
             }
+        }
+        .onAppear() {
+            upgradesAvaliable = upgrades.keys.sorted()
+            partsAvaliable = parts.keys.sorted()
         }
     }
     

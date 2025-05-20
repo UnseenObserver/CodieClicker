@@ -26,43 +26,43 @@ struct ComputerView: View {
         _cpuViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _gpuViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _ramViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _motherBoardViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _hardDriveViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _powerSupplyViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
         _rubberDuckViewModel = ObservedObject(
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
-                upgradeIcon: Image(systemName: "pencil")
+                upgradeIcon: "DogPic"
             )
         )
     }
@@ -76,51 +76,56 @@ struct ComputerView: View {
                     Spacer(minLength: 15)
                     Image(gpuViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(gpuViewModel.scale)
                     Spacer()
-                    Image(systemName: "pencil")
+                    Image(ramViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(ramViewModel.scale)
                     Spacer()
-                    Image(systemName: "pencil")
+                    Image(rubberDuckViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(rubberDuckViewModel.scale)
                     Spacer(minLength: 15)
                 }
-                Spacer(minLength: 30)
+                Spacer(minLength: 20)
                 HStack {
-                    if timerBool {
-                        Image(systemName: "pencil")
-                            .resizable()
-                            .background(.blue)
-                            .frame(width: width*1.5, height: height*1.5)
-                    } else {
-                        Text("Hello")
-                    }
+                    Image(cpuViewModel.upgradeIcon)
+                        .resizable()
+                        .frame(width: width*1.8, height: height*1.8)
+                        .scaleEffect(cpuViewModel.scale)
                 }
-                Spacer(minLength: 30)
+                Spacer(minLength: 20)
                 HStack {
                     Spacer(minLength: 15)
-                    Image(systemName: "pencil")
+                    Image(powerSupplyViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(powerSupplyViewModel.scale)
                     Spacer()
-                    Image(systemName: "pencil")
+                    Image(motherBoardViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(motherBoardViewModel.scale)
                     Spacer()
-                    Image(systemName: "pencil")
+                    Image(hardDriveViewModel.upgradeIcon)
                         .resizable()
-                        .background(.blue)
                         .frame(width: width, height: height)
+                        .scaleEffect(hardDriveViewModel.scale)
                     Spacer(minLength: 15)
                 }
                 Spacer(minLength: 40)
+            }
+            .onChange(of: timerBool) {
+                cpuViewModel.toggleSizeWithAnimation()
+                gpuViewModel.toggleSizeWithAnimation()
+                ramViewModel.toggleSizeWithAnimation()
+                motherBoardViewModel.toggleSizeWithAnimation()
+                powerSupplyViewModel.toggleSizeWithAnimation()
+                hardDriveViewModel.toggleSizeWithAnimation()
+                rubberDuckViewModel.toggleSizeWithAnimation()
             }
         }
     }
