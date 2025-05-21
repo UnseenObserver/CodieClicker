@@ -10,6 +10,7 @@ import SwiftUI
 
 struct UpgradeView: View {
     @ObservedObject var clicker: Clickable
+    @Binding var autoSave: Bool
     @Binding var autoClickerON: Bool
     @Environment(\.modelContext) var modelContext
     @AppStorage("partsString") var partsString: String?
@@ -23,6 +24,11 @@ struct UpgradeView: View {
     @Binding var rubberDuckType: String
     
     @State var upgrades: [String:Upgrade] = [
+        
+        //Theo Notes 🐶!
+        //I would make it so that all first strength items get purchesed befor upgrading
+        //The second ugrade takes way to long, so either make it cheaper or make the autoClicker cheaper
+        //When the assets are done the pictures should already have a system to work
         "AACPU1" :Upgrade(name: "Rinky-Dink CPU", add: true, value: 1, price: 10, id: 0, type: "CPU", strength: 0),
             "ABCPU2" :Upgrade(name: "Nice CPU", add: true, value: 5, price: 750, id: 1, type: "CPU", strength: 1),
             "ACCPU3" :Upgrade(name: "Lovely CPU", add: true, value: 100, price: 25000, id: 2, type: "CPU", strength: 2),
@@ -123,7 +129,7 @@ struct UpgradeView: View {
                                             }
                                             picChange(upgrade: upgrades[key]!)
                                             upgrades.removeValue(forKey: key)
-                                            
+                                            upgradesString = upgradesAvaliable.joined(separator: ",")
                                         } else {
                                             
                                         }
@@ -134,6 +140,10 @@ struct UpgradeView: View {
                     }
                 }
             }
+        }
+        .onChange(of: autoSave) {
+            partsString = partsAvaliable.joined(separator: ",")
+            upgradesString = upgradesAvaliable.joined(separator: ",")
         }
     }
     

@@ -16,6 +16,7 @@ struct ClickerView: View {
     @ObservedObject private var viewModel: clickerViewModel
     @ObservedObject var clicker: Clickable
     @Environment(\.modelContext) private var modelContext
+    @State var lightningBolt: Bool = false
     
     init(clicker: Clickable, isClicked: Bool, holdOnN: Binding<String>) {
         self.clicker = clicker;
@@ -36,12 +37,15 @@ struct ClickerView: View {
                     Button {
                         viewModel.toggleClickWithAnimation()
                         clicker.click()
+                        lightningBolt.toggle()
                     } label: {
                         Image(systemName: viewModel.dataIcon)
                             .resizable()
                             .frame(width: 300, height: 300)
                             .foregroundStyle(viewModel.dataIconColor)
                             .scaleEffect(viewModel.scale)
+                            .zIndex(1)
+                            .lightningEffect(trigger: $lightningBolt, distance: 600, size: 30, duration: 2, boltCount: 9)
                     }
                     .buttonRepeatBehavior(.enabled)
                     .onLongPressGesture(minimumDuration: 0.5) {

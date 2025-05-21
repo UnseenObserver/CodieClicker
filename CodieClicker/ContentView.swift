@@ -20,6 +20,7 @@ struct ContentView: View {
     @AppStorage("clicker.upgrademult") var clickerUpgradeMult: Double?
     @AppStorage("autoclicker") var autoClickerON: Bool = false
     @State var autoSave = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    @State var autoSaveBool: Bool = false
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @AppStorage("isclicked") var isClicked: Bool = false
     @State var holdOn: String = "off"
@@ -51,13 +52,14 @@ struct ContentView: View {
                         clickerAmountOfData = clicker.amountOfData
                         clickerUpgradeAdd = clicker.upgradeAdd
                         clickerUpgradeMult = clicker.upgradeMult
+                        autoSaveBool.toggle()
                     }
                 Text(String(clicker.upgradeMult))
             }
             
             TabView(selection: $selectedTab) {
                 Tab("", systemImage: "arrowshape.up", value: 0) {
-                    UpgradeView(clicker: clicker, autoClickerON: $autoClickerON, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
+                    UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
                     ClickerView(clicker: clicker, isClicked: isClicked, holdOnN: $holdOn)
