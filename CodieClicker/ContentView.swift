@@ -24,6 +24,13 @@ struct ContentView: View {
     @AppStorage("isclicked") var isClicked: Bool = false
     @State var holdOn: String = "off"
     @State var timerBool: Bool = false
+    @AppStorage("cpuStrength") var cpuType: String = "blankPic"
+    @AppStorage("gpuStrength") var gpuType: String = "blankPic"
+    @AppStorage("ramStrength") var ramType: String = "blankPic"
+    @AppStorage("motherBoardStrength") var motherboardType: String = "blankPic"
+    @AppStorage("powerSupplyStrength") var powerSupplyType: String = "blankPic"
+    @AppStorage("hardDriveStrength") var harDriveType: String = "blankPic"
+    @AppStorage("rubberDuckSrength") var rubberDuckType: String = "blankPic"
     
     @Environment(\.modelContext) var modelContext
     
@@ -35,9 +42,9 @@ struct ContentView: View {
                 Text("\(clicker.amountOfData.formatted(.number.notation(.compactName)))dP")
                     .font(.title)
                     .onReceive(timer) { _ in
-                        toggleTimer(timerBool: timerBool)
                         if autoClickerON {
                             clicker.click()
+                            toggleTimer(timerBool: timerBool)
                         }
                     }
                     .onReceive(autoSave) { _ in
@@ -50,13 +57,13 @@ struct ContentView: View {
             
             TabView(selection: $selectedTab) {
                 Tab("", systemImage: "arrowshape.up", value: 0) {
-                    UpgradeView(clicker: clicker, autoClickerON: $autoClickerON)
+                    UpgradeView(clicker: clicker, autoClickerON: $autoClickerON, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
                     ClickerView(clicker: clicker, isClicked: isClicked, holdOnN: $holdOn)
                 }
                 Tab("", systemImage: "desktopcomputer",value: 2) {
-                    ComputerView(timerBool: $timerBool)
+                    ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
                 }
             }
         }
