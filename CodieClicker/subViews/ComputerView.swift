@@ -30,8 +30,10 @@ struct ComputerView: View {
     @Binding var powerSupplyType: String
     @Binding var harDriveType: String
     @Binding var rubberDuckType: String
+    @Binding var calcEquation: String
     
-    init(timerBool: Binding<Bool>, cpuType: Binding<String>, gpuType: Binding<String>, ramType: Binding<String>, motherBoardType: Binding<String>, powerSupplyType: Binding<String>, hardDriveType: Binding<String>, rubberDuckType: Binding<String>) {
+    init(timerBool: Binding<Bool>, cpuType: Binding<String>, gpuType: Binding<String>, ramType: Binding<String>, motherBoardType: Binding<String>, powerSupplyType: Binding<String>, hardDriveType: Binding<String>, rubberDuckType: Binding<String>, calcEquation: Binding<String>) {
+        _calcEquation = calcEquation
         _cpuType = cpuType
         _gpuType = gpuType
         _ramType = ramType
@@ -88,6 +90,8 @@ struct ComputerView: View {
     var body: some View {
         HStack {
             VStack{
+                Text(calcEquation)
+                    .frame(width: .infinity, height: 50, alignment: .center)
                 Spacer(minLength: 40)
                 HStack {
                     Spacer(minLength: 15)

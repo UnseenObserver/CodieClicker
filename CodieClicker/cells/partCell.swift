@@ -19,6 +19,11 @@ struct partCell: View {
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
+                case "hold":
+                    Image(systemName: "hold.brakesignal")
+                        .resizable()
+                        .frame(width: 60, height: 45)
+                        .scaledToFit()
                 default:
                     Image(systemName: "exclamationmark.warninglight.fill")
                         .resizable()
@@ -33,6 +38,8 @@ struct partCell: View {
                 case "autoClicker":
                     Text("Auto Clicker")
                     Text("2 Clicks/Sec")
+                case "hold":
+                    Text("Hold to Click")
                 default:
                     Text("Error")
                 }
@@ -41,7 +48,7 @@ struct partCell: View {
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(String("\(part.price)dP"))
+                Text(String("\(part.price.formatted(.number.notation(.compactName)))dP"))
             }
         }
         .frame(height: 100)

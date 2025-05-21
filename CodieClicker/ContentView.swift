@@ -19,11 +19,10 @@ struct ContentView: View {
     @AppStorage("clicker.upgradeadd") var clickerUpgradeAdd: Double?
     @AppStorage("clicker.upgrademult") var clickerUpgradeMult: Double?
     @AppStorage("autoclicker") var autoClickerON: Bool = false
-    @State var autoSave = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    @State var autoSave = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var autoSaveBool: Bool = false
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @AppStorage("isclicked") var isClicked: Bool = false
-    @State var holdOn: String = "off"
     @State var timerBool: Bool = false
     @AppStorage("cpuStrength") var cpuType: String = "blankPic"
     @AppStorage("gpuStrength") var gpuType: String = "blankPic"
@@ -32,6 +31,8 @@ struct ContentView: View {
     @AppStorage("powerSupplyStrength") var powerSupplyType: String = "blankPic"
     @AppStorage("hardDriveStrength") var harDriveType: String = "blankPic"
     @AppStorage("rubberDuckSrength") var rubberDuckType: String = "blankPic"
+    @AppStorage("calcEquation") var calcEquation: String = "(1 + 0 + 0) * (1 + 0 + 0)"
+    @AppStorage("holdFunction") var holdOn: Bool = false
     
     @Environment(\.modelContext) var modelContext
     
@@ -59,13 +60,13 @@ struct ContentView: View {
             
             TabView(selection: $selectedTab) {
                 Tab("", systemImage: "arrowshape.up", value: 0) {
-                    UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
+                    UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, holdOn: $holdOn, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType, calcEquaion: $calcEquation)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
-                    ClickerView(clicker: clicker, isClicked: isClicked, holdOnN: $holdOn)
+                    ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn)
                 }
                 Tab("", systemImage: "desktopcomputer",value: 2) {
-                    ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType)
+                    ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType, calcEquation: $calcEquation)
                 }
             }
         }

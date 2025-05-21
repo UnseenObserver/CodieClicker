@@ -10,22 +10,21 @@ import SwiftUI
 import SwiftData
 
 struct ClickerView: View {
-    @Binding var holdOn: String
-    @State var isHolding: Bool = false
     @State private var timer: Timer? = nil
     @ObservedObject private var viewModel: clickerViewModel
     @ObservedObject var clicker: Clickable
     @Environment(\.modelContext) private var modelContext
     @State var lightningBolt: Bool = false
+    @Binding var holdOn: Bool
     
-    init(clicker: Clickable, isClicked: Bool, holdOnN: Binding<String>) {
+    init(clicker: Clickable, isClicked: Bool, holdOn: Binding<Bool>) {
         self.clicker = clicker;
         _viewModel = ObservedObject(
             wrappedValue: clickerViewModel(
                 isClicked: isClicked
             )
         )
-        _holdOn = holdOnN;
+        _holdOn = holdOn
     }
     
     
@@ -47,48 +46,9 @@ struct ClickerView: View {
                             .zIndex(1)
                             .lightningEffect(trigger: $lightningBolt, distance: 600, size: 30, duration: 2, boltCount: 9)
                     }
-                    .buttonRepeatBehavior(.enabled)
-                    .onLongPressGesture(minimumDuration: 0.5) {
-                        switch holdOn {
-                        case "off":
-                            Text("Off")
-                        case "one":
-                            startTimer(interval: 1)
-                            isHolding = true
-                        case "half":
-                            startTimer(interval: 0.5)
-                            isHolding = true
-                        case "quarter":
-                            startTimer(interval: 0.25)
-                            isHolding = true
-                        case "8th":
-                            startTimer(interval: 0.125)
-                            isHolding = true
-                        case "16th":
-                            startTimer(interval: 0.0625)
-                            isHolding = true
-                        default:
-                            Text("Error")
-                        }
-                    }
-                    
+                    .buttonRepeatBehavior(holdOn ? .enabled:.disabled)
                 }
             }
         }
     }
-    
-    func startTimer(interval: Double) {
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-            if isHolding {
-                clicker.click()
-            }
-        }
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    
 }
