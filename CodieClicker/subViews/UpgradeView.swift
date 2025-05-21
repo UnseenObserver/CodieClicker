@@ -79,8 +79,8 @@ struct UpgradeView: View {
     ]
     
     @State var parts: [String:Part] = [
-        "aC" :Part(name: "Auto Clicker", function: "autoClicker", price: 50000, id: 0),
-        "hC" :Part(name: "Hold to Click", function: "hold", price: 50000, id: 1)
+        "aC" :Part(name: "Auto Clicker", function: "autoClicker", price: 50000, id: 00),
+        "hC" :Part(name: "Hold to Click", function: "hold", price: 50000, id: 01)
     ]
     
     var upgradesAvaliable: [String] {
@@ -108,44 +108,48 @@ struct UpgradeView: View {
                     } else {
                         Section("Parts") {
                             ForEach(partsAvaliable, id: \.self) { key in
-                                partCell(part: parts[key]!)
-                                    .onTapGesture {
-                                        if buyCheck(clicker: clicker, upgrade: nil,part: parts[key]!) {
-                                            switch parts[key]!.function {
-                                            case "autoClicker":
-                                                autoClickerON = true
-                                            case "hold":
-                                                holdOn = true
-                                            default:
-                                                Text("Error")
+                                if let part = parts[key] {
+                                    partCell(part: part)
+                                        .onTapGesture {
+                                            if buyCheck(clicker: clicker, upgrade: nil, part: part) {
+                                                switch part.function {
+                                                case "autoClicker":
+                                                    autoClickerON = true
+                                                case "hold":
+                                                    holdOn = true
+                                                default:
+                                                    Text("Error")
+                                                }
+                                                parts.removeValue(forKey: key)
+                                                partsString = partsAvaliable.joined(separator: ",")
+                                            } else {
+                                                
                                             }
-                                            parts.removeValue(forKey: key)
-                                            partsString = partsAvaliable.joined(separator: ",")
-                                        } else {
-                                            
+                                            try? modelContext.save()
                                         }
-                                        try? modelContext.save()
-                                    }
+                                }
                             }
                         }
                         Section("Upgrades") {
                             ForEach(upgradesAvaliable, id: \.self) { key in
-                                upgradeCell(upgrade: upgrades[key]!)
-                                    .onTapGesture {
-                                        if buyCheck(clicker: clicker, upgrade: upgrades[key]!, part: nil) {
-                                            if upgrades[key]!.add == true {
-                                                clicker.upgradeAdd += upgrades[key]!.value
+                                if let upgrade = upgrades[key] {
+                                    upgradeCell(upgrade: upgrade)
+                                        .onTapGesture {
+                                            if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
+                                                if upgrade.add == true {
+                                                    clicker.upgradeAdd += upgrade.value
+                                                } else {
+                                                    clicker.upgradeMult += upgrade.value
+                                                }
+                                                picChange(upgrade: upgrade)
+                                                upgrades.removeValue(forKey: key)
+                                                upgradesString = upgradesAvaliable.joined(separator: ",")
                                             } else {
-                                                clicker.upgradeMult += upgrades[key]!.value
+                                                
                                             }
-                                            picChange(upgrade: upgrades[key]!)
-                                            upgrades.removeValue(forKey: key)
-                                            upgradesString = upgradesAvaliable.joined(separator: ",")
-                                        } else {
-                                            
+                                            try? modelContext.save()
                                         }
-                                        try? modelContext.save()
-                                    }
+                                }
                             }
                         }
                     }
