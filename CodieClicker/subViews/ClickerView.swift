@@ -44,7 +44,7 @@ struct ClickerView: View {
                             .foregroundStyle(viewModel.dataIconColor)
                             .scaleEffect(viewModel.scale)
                             .zIndex(1)
-                            .lightningEffect(trigger: $lightningBolt, distance: 600, size: 30, duration: 2, boltCount: 9)
+                            .lightningEffect(trigger: $lightningBolt, distance: 600, size: 30, duration: 1.5, boltCount: 9)
                     }
                     .buttonRepeatBehavior(holdOn ? .enabled:.disabled)
                 }

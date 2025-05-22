@@ -71,11 +71,16 @@ struct LightningBolt: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY + size*1))
+        path.addLine(to: CGPoint(x: rect.midX - size*0.8, y: rect.midY + size*2))
+        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY + size*3))
+        path.addLine(to: CGPoint(x: rect.midX + size, y: rect.midY + size*1.5 + size*0.5))
+        path.addLine(to: CGPoint(x: rect.midX + size*0.8, y: rect.midY + size*1.5))
         path.addLine(to: CGPoint(x: rect.midX + size, y: rect.midY - size*1.5))
-        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY))
-        path.addLine(to: CGPoint(x: rect.midX + size, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY + size*1.5))
-        path.addLine(to: CGPoint(x: rect.midX + size, y: rect.midY))
+        //        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY))
+        //        path.addLine(to: CGPoint(x: rect.midX + size, y: rect.maxY))
+        //        path.addLine(to: CGPoint(x: rect.midX - size, y: rect.midY + size*1.5))
+        //        path.addLine(to: CGPoint(x: rect.midX + size, y: rect.midY))
         path.closeSubpath()
         return path
     }
@@ -91,9 +96,9 @@ struct LightningBoltView: View {
     @State private var animate = false
 
     var body: some View {
-        LightningBolt(size: size)
-            .fill(Color.yellow)
-            .frame(width: 10, height: 20)
+        Image("lightningBoltPic")
+            .resizable()
+            .frame(width: size, height: size)
             .opacity(animate ? 0 : 1)
             .offset(x: animate ? cos(angle.radians) * distance : 0,
                     y: animate ? sin(angle.radians) * distance : 0)
