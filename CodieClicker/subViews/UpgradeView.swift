@@ -83,21 +83,9 @@ struct UpgradeView: View {
         "hC" :Part(name: "Hold to Click", function: "hold", price: 50000, id: 01)
     ]
     
-    var upgradesAvaliable: [String] {
-        if let upgradesArrayString = upgradesString {
-            upgradesArrayString.components(separatedBy: ",")
-        } else {
-            upgrades.keys.sorted()
-        }
-    }
+    @State var upgradesAvaliable: [String] = [""]
     
-    var partsAvaliable: [String] {
-        if let partsArrayString = partsString {
-            partsArrayString.components(separatedBy: ",")
-        } else {
-            parts.keys.sorted()
-        }
-    }
+    @State var partsAvaliable: [String] = [""]
     
     var body: some View {
         HStack{
@@ -120,8 +108,7 @@ struct UpgradeView: View {
                                                 default:
                                                     Text("Error")
                                                 }
-                                                parts.removeValue(forKey: key)
-                                                partsString = partsAvaliable.joined(separator: ",")
+                                                arrayFix(type: "part", key: key)
                                             } else {
                                                 
                                             }
@@ -267,6 +254,19 @@ struct UpgradeView: View {
                 }
             }
         }
+        .onAppear() {
+            if let partsArrayString = partsString {
+                partsAvaliable = partsArrayString.components(separatedBy: ",")
+            } else {
+                partsAvaliable = parts.keys.sorted()
+            }
+            
+            if let upgradesArrayString = upgradesString {
+                upgradesAvaliable = upgradesArrayString.components(separatedBy: ",")
+            } else {
+                upgradesAvaliable = upgrades.keys.sorted()
+            }
+        }
         .onChange(of: autoSave) {
             partsString = partsAvaliable.joined(separator: ",")
             upgradesString = upgradesAvaliable.joined(separator: ",")
@@ -290,6 +290,25 @@ struct UpgradeView: View {
         }
         
         return shoudlBuy
+    }
+    
+    func arrayFix(type: String, key: String) {
+        switch type {
+        case "upgrade":
+            upgrades.removeValue(forKey: key)
+            if let location = upgradesAvaliable.firstIndex(of: key) {
+                upgradesAvaliable.remove(at: location)
+                upgradesString = upgradesAvaliable.joined(separator: ",")
+            }
+        case "part":
+            parts.removeValue(forKey: key)
+            if let location = partsAvaliable.firstIndex(of: key) {
+                partsAvaliable.remove(at: location)
+                partsString = partsAvaliable.joined(separator: ",")
+            }
+        default:
+            Text("Error")
+        }
     }
     
     func picChange(upgrade: Upgrade) {

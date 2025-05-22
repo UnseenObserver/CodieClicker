@@ -22,7 +22,7 @@ struct partCell: View {
                 case "hold":
                     Image(systemName: "hold.brakesignal")
                         .resizable()
-                        .frame(width: 60, height: 45)
+                        .frame(width: 60, height: 43)
                         .scaledToFit()
                 default:
                     Image(systemName: "exclamationmark.warninglight.fill")
