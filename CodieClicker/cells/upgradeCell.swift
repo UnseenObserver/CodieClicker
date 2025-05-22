@@ -40,7 +40,7 @@ struct upgradeCell: View {
                 Text(String("\(upgrade.price.formatted(.number.notation(.compactName)))dP"))
             }
         }
-        .frame(height: 100)
+        .frame(width: 230, height: 100)
     }
 }
 

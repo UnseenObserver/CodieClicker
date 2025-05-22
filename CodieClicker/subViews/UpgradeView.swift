@@ -89,7 +89,7 @@ struct UpgradeView: View {
     
     var body: some View {
         HStack{
-            VStack{
+            VStack {
                 List {
                     if upgradesAvaliable.isEmpty && partsAvaliable.isEmpty {
                         Text("No more Upgrades!")
@@ -117,27 +117,139 @@ struct UpgradeView: View {
                                 }
                             }
                         }
-                        Section("Upgrades") {
-                            ForEach(upgradesAvaliable, id: \.self) { key in
-                                if let upgrade = upgrades[key] {
-                                    upgradeCell(upgrade: upgrade)
-                                        .onTapGesture {
-                                            if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
-                                                if upgrade.add == true {
-                                                    clicker.upgradeAdd += upgrade.value
-                                                } else {
-                                                    clicker.upgradeMult += upgrade.value
-                                                }
-                                                picChange(upgrade: upgrade)
-                                                arrayFix(type: "upgrade", key: key)
-                                            } else {
+                        Section("Rinky-Dink") {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(upgradesAvaliable, id: \.self) { key in
+                                        if let upgrade = upgrades[key] {
+                                            if Array(key)[0] == "A" {
+                                                upgradeCell(upgrade: upgrade)
+                                                    .onTapGesture {
+                                                        if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
+                                                            if upgrade.add == true {
+                                                                clicker.upgradeAdd += upgrade.value
+                                                            } else {
+                                                                clicker.upgradeMult += upgrade.value
+                                                            }
+                                                            picChange(upgrade: upgrade)
+                                                            upgrades.removeValue(forKey: key)
+                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                        } else {
+                                                            
+                                                        }
+                                                        try? modelContext.save()
+                                                    }
+                                                    .padding(.trailing, 20)
+                                                    .padding(.leading, 20)
+                                                Divider()
                                                 
                                             }
-                                            try? modelContext.save()
                                         }
+                                    }
+                                }
+                            }
+                            
+                        }
+                        .listRowBackground(Color("RinkyDink"))
+                        Section("Nice") {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(upgradesAvaliable, id: \.self) { key in
+                                        if let upgrade = upgrades[key] {
+                                            if Array(key)[0] == "B" {
+                                                upgradeCell(upgrade: upgrade)
+                                                    .onTapGesture {
+                                                        if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
+                                                            if upgrade.add == true {
+                                                                clicker.upgradeAdd += upgrade.value
+                                                            } else {
+                                                                clicker.upgradeMult += upgrade.value
+                                                            }
+                                                            picChange(upgrade: upgrade)
+                                                            upgrades.removeValue(forKey: key)
+                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                        } else {
+                                                            
+                                                        }
+                                                        try? modelContext.save()
+                                                    }
+                                                    .padding(.trailing, 20)
+                                                    .padding(.leading, 20)
+                                                Divider()
+                                                
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
+                        .listRowBackground(Color("Nice"))
+                        Section("Lovely") {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(upgradesAvaliable, id: \.self) { key in
+                                        if let upgrade = upgrades[key] {
+                                            if Array(key)[0] == "C" {
+                                                upgradeCell(upgrade: upgrade)
+                                                    .onTapGesture {
+                                                        if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
+                                                            if upgrade.add == true {
+                                                                clicker.upgradeAdd += upgrade.value
+                                                            } else {
+                                                                clicker.upgradeMult += upgrade.value
+                                                            }
+                                                            picChange(upgrade: upgrade)
+                                                            upgrades.removeValue(forKey: key)
+                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                        } else {
+                                                            
+                                                        }
+                                                        try? modelContext.save()
+                                                    }
+                                                    .padding(.trailing, 20)
+                                                    .padding(.leading, 20)
+                                                Divider()
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .listRowBackground(Color("Lovely"))
+                        Section("Premium") {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(upgradesAvaliable, id: \.self) { key in
+                                        if let upgrade = upgrades[key] {
+                                            if Array(key)[0] == "D" {
+                                                upgradeCell(upgrade: upgrade)
+                                                    .onTapGesture {
+                                                        if buyCheck(clicker: clicker, upgrade: upgrade, part: nil) {
+                                                            if upgrade.add == true {
+                                                                clicker.upgradeAdd += upgrade.value
+                                                            } else {
+                                                                clicker.upgradeMult += upgrade.value
+                                                            }
+                                                            picChange(upgrade: upgrade)
+                                                            upgrades.removeValue(forKey: key)
+                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                        } else {
+                                                            
+                                                        }
+                                                        try? modelContext.save()
+                                                    }
+                                                    .padding(.trailing, 20)
+                                                    .padding(.leading, 20)
+                                                Divider()
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .listRowBackground(Color("Premium"))
                     }
                 }
             }

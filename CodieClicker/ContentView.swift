@@ -68,6 +68,9 @@ struct ContentView: View {
                 Tab("", systemImage: "desktopcomputer",value: 2) {
                     ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType, calcEquation: $calcEquation)
                 }
+                Tab("", systemImage: "desktopcomputer",value: 3) {
+                    TestView()
+                }
             }
         }
         .onAppear() {
