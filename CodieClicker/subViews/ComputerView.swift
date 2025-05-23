@@ -21,6 +21,7 @@ struct ComputerView: View {
     @ObservedObject private var ramViewModel: upgradeViewModel
     @ObservedObject private var motherBoardViewModel: upgradeViewModel
     @ObservedObject private var hardDriveViewModel: upgradeViewModel
+    @ObservedObject private var ssdViewModel: upgradeViewModel
     @ObservedObject private var powerSupplyViewModel: upgradeViewModel
     @ObservedObject private var rubberDuckViewModel: upgradeViewModel
     @Binding var cpuType: String
@@ -29,10 +30,11 @@ struct ComputerView: View {
     @Binding var motherboardType: String
     @Binding var powerSupplyType: String
     @Binding var harDriveType: String
+    @Binding var ssdType: String
     @Binding var rubberDuckType: String
     @Binding var calcEquation: String
     
-    init(timerBool: Binding<Bool>, cpuType: Binding<String>, gpuType: Binding<String>, ramType: Binding<String>, motherBoardType: Binding<String>, powerSupplyType: Binding<String>, hardDriveType: Binding<String>, rubberDuckType: Binding<String>, calcEquation: Binding<String>) {
+    init(timerBool: Binding<Bool>, cpuType: Binding<String>, gpuType: Binding<String>, ramType: Binding<String>, motherBoardType: Binding<String>, powerSupplyType: Binding<String>, hardDriveType: Binding<String>, ssdType: Binding<String>, rubberDuckType: Binding<String>, calcEquation: Binding<String>) {
         _calcEquation = calcEquation
         _cpuType = cpuType
         _gpuType = gpuType
@@ -40,6 +42,7 @@ struct ComputerView: View {
         _motherboardType = motherBoardType
         _powerSupplyType = powerSupplyType
         _harDriveType = hardDriveType
+        _ssdType = ssdType
         _rubberDuckType = rubberDuckType
         _timerBool = timerBool
         _cpuViewModel = ObservedObject(
@@ -70,6 +73,12 @@ struct ComputerView: View {
             wrappedValue: upgradeViewModel(
                 isTicked: timerBool,
                 upgradeIcon: hardDriveType
+            )
+        )
+        _ssdViewModel = ObservedObject(
+            wrappedValue: upgradeViewModel(
+                isTicked: timerBool,
+                upgradeIcon: ssdType
             )
         )
         _powerSupplyViewModel = ObservedObject(
@@ -110,20 +119,20 @@ struct ComputerView: View {
                         .lightningEffect(trigger: $lightningBolt, distance: 80, size: 5, duration: 1.2, boltCount: 3)
 
                     Spacer()
-                    Image(rubberDuckViewModel.upgradeIcon)
+                    Image(ssdViewModel.upgradeIcon)
                         .resizable()
                         .frame(width: width, height: height)
-                        .scaleEffect(rubberDuckViewModel.scale)
+                        .scaleEffect(ssdViewModel.scale)
                         .zIndex(1)
                         .lightningEffect(trigger: $lightningBolt, distance: 80, size: 5, duration: 0.9, boltCount: 3)
                     Spacer(minLength: 15)
                 }
                 Spacer(minLength: 20)
                 HStack {
-                    Image(cpuViewModel.upgradeIcon)
+                    Image(rubberDuckViewModel.upgradeIcon)
                         .resizable()
                         .frame(width: width*1.8, height: height*1.8)
-                        .scaleEffect(cpuViewModel.scale)
+                        .scaleEffect(rubberDuckViewModel.scale)
                         .zIndex(1)
                         .lightningEffect(trigger: $lightningBolt, distance: 160, size: 8, duration: 1, boltCount: 7)
                 }

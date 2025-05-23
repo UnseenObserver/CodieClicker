@@ -22,6 +22,7 @@ struct UpgradeView: View {
     @Binding var motherBoardType: String
     @Binding var powerSupplyType: String
     @Binding var hardDriveType: String
+    @Binding var ssdType: String
     @Binding var rubberDuckType: String
     @Binding var calcEquaion: String
     @State var C: String = "1"
@@ -30,6 +31,7 @@ struct UpgradeView: View {
     @State var G: String = "1"
     @State var R: String = "0"
     @State var P: String = "0"
+    @State var S: String = "0"
     
     //        Theo Notes 🐶!
     //        I would make it so that all first strength items get purchesed befor upgrading
@@ -270,7 +272,7 @@ struct UpgradeView: View {
         .onChange(of: autoSave) {
             partsString = partsAvaliable.joined(separator: ",")
             upgradesString = upgradesAvaliable.joined(separator: ",")
-            calcEquaion = "(\(C) + \(M) + \(H)) × (\(G) + \(R) + \(P))"
+            calcEquaion = "(\(C) + \(M) + \(H) + \(S) × (\(G) + \(R) + \(P))"
         }
     }
     
@@ -325,6 +327,8 @@ struct UpgradeView: View {
         case "HRD":
             hardDriveType = "hardDrive\(upgrade.strength)Pic"
             H = upgrade.value.formatted(.number.notation(.compactName))
+        case "SSD":
+            ssdType = "ssf\(upgrade.strength)Pic"
         case "PWS":
             powerSupplyType = "powerSupply\(upgrade.strength)Pic"
             P = upgrade.value.formatted(.number.notation(.compactName))
