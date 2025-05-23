@@ -16,8 +16,9 @@ struct ClickerView: View {
     @Environment(\.modelContext) private var modelContext
     @State var lightningBolt: Bool = false
     @Binding var holdOn: Bool
+    @Binding var cpuPicture: String
     
-    init(clicker: Clickable, isClicked: Bool, holdOn: Binding<Bool>) {
+    init(clicker: Clickable, isClicked: Bool, holdOn: Binding<Bool>, cpuPicture: Binding<String>) {
         self.clicker = clicker;
         _viewModel = ObservedObject(
             wrappedValue: clickerViewModel(
@@ -25,6 +26,7 @@ struct ClickerView: View {
             )
         )
         _holdOn = holdOn
+        _cpuPicture = cpuPicture
     }
     
     
@@ -38,7 +40,7 @@ struct ClickerView: View {
                         clicker.click()
                         lightningBolt.toggle()
                     } label: {
-                        Image(systemName: viewModel.dataIcon)
+                        Image(cpuPicture)
                             .resizable()
                             .frame(width: 300, height: 300)
                             .foregroundStyle(viewModel.dataIconColor)

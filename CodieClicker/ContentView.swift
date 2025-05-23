@@ -24,7 +24,7 @@ struct ContentView: View {
     @State var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @AppStorage("isclicked") var isClicked: Bool = false
     @State var timerBool: Bool = false
-    @AppStorage("cpuStrength") var cpuType: String = "blankPic"
+    @AppStorage("cpuStrength") var cpuType: String = "cpu0Pic"
     @AppStorage("gpuStrength") var gpuType: String = "blankPic"
     @AppStorage("ramStrength") var ramType: String = "blankPic"
     @AppStorage("motherBoardStrength") var motherboardType: String = "blankPic"
@@ -64,7 +64,7 @@ struct ContentView: View {
                     UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, holdOn: $holdOn, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, ssdType: $ssdType, rubberDuckType: $rubberDuckType, calcEquaion: $calcEquation)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
-                    ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn)
+                    ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn, cpuPicture: $cpuType)
                 }
                 Tab("", systemImage: "desktopcomputer",value: 2) {
                     ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, ssdType: $ssdType, rubberDuckType: $rubberDuckType, calcEquation: $calcEquation)
