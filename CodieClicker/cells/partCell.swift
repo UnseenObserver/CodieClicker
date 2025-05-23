@@ -48,7 +48,7 @@ struct partCell: View {
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(String("\(part.price.formatted(.number.notation(.compactName)))dP"))
+                Text(String("\(part.price.formatted(.number.notation(.compactName))) dP"))
             }
         }
         .frame(height: 100)

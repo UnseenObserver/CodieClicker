@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ssd2pic.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
