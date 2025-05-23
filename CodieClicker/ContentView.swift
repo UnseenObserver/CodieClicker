@@ -30,6 +30,7 @@ struct ContentView: View {
     @AppStorage("motherBoardStrength") var motherboardType: String = "blankPic"
     @AppStorage("powerSupplyStrength") var powerSupplyType: String = "blankPic"
     @AppStorage("hardDriveStrength") var harDriveType: String = "blankPic"
+    @AppStorage("ssdStrength") var ssdType: String = "blankPic"
     @AppStorage("rubberDuckSrength") var rubberDuckType: String = "blankPic"
     @AppStorage("calcEquation") var calcEquation: String = "(1 + 0 + 0) * (1 + 0 + 0)"
     @AppStorage("holdFunction") var holdOn: Bool = false
@@ -60,13 +61,13 @@ struct ContentView: View {
             
             TabView(selection: $selectedTab) {
                 Tab("", systemImage: "arrowshape.up", value: 0) {
-                    UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, holdOn: $holdOn, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType, calcEquaion: $calcEquation)
+                    UpgradeView(clicker: clicker,autoSave: $autoSaveBool, autoClickerON: $autoClickerON, holdOn: $holdOn, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, ssdType: $ssdType, rubberDuckType: $rubberDuckType, calcEquaion: $calcEquation)
                 }
                 Tab("", systemImage: "bolt.circle.fill",value: 1) {
                     ClickerView(clicker: clicker, isClicked: isClicked, holdOn: $holdOn)
                 }
                 Tab("", systemImage: "desktopcomputer",value: 2) {
-                    ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, rubberDuckType: $rubberDuckType, calcEquation: $calcEquation)
+                    ComputerView(timerBool: $timerBool, cpuType: $cpuType, gpuType: $gpuType, ramType: $ramType, motherBoardType: $motherboardType, powerSupplyType: $powerSupplyType, hardDriveType: $harDriveType, ssdType: $ssdType, rubberDuckType: $rubberDuckType, calcEquation: $calcEquation)
                 }
             }
         }
