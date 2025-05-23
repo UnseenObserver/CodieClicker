@@ -80,9 +80,9 @@ struct UpgradeView: View {
         "hC" :Part(name: "Hold to Click", function: "hold", price: 10000, id: 01)
     ]
     
-    @State var upgradesAvaliable: [String] = [""]
+    @AppStorage("avliableUpgrades") var upgradesAvaliable: [String] = [""]
     
-    @State var partsAvaliable: [String] = [""]
+    @AppStorage("partsAvaliable") var partsAvaliable: [String] = [""]
     
     var body: some View {
         HStack{
@@ -129,8 +129,7 @@ struct UpgradeView: View {
                                                                 clicker.upgradeMult += upgrade.value
                                                             }
                                                             picChange(upgrade: upgrade)
-                                                            upgrades.removeValue(forKey: key)
-                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                            arrayFix(type: "upgrade", key: key)
                                                         } else {
                                                             
                                                         }
@@ -163,8 +162,7 @@ struct UpgradeView: View {
                                                                 clicker.upgradeMult += upgrade.value
                                                             }
                                                             picChange(upgrade: upgrade)
-                                                            upgrades.removeValue(forKey: key)
-                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                            arrayFix(type: "upgrade", key: key)
                                                         } else {
                                                             
                                                         }
@@ -196,8 +194,7 @@ struct UpgradeView: View {
                                                                 clicker.upgradeMult += upgrade.value
                                                             }
                                                             picChange(upgrade: upgrade)
-                                                            upgrades.removeValue(forKey: key)
-                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                            arrayFix(type: "upgrade", key: key)
                                                         } else {
                                                             
                                                         }
@@ -229,8 +226,7 @@ struct UpgradeView: View {
                                                                 clicker.upgradeMult += upgrade.value
                                                             }
                                                             picChange(upgrade: upgrade)
-                                                            upgrades.removeValue(forKey: key)
-                                                            upgradesString = upgradesAvaliable.joined(separator: ",")
+                                                            arrayFix(type: "upgrade", key: key)
                                                         } else {
                                                             
                                                         }
