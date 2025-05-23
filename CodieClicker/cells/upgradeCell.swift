@@ -25,6 +25,7 @@ struct upgradeCell: View {
                         .scaledToFit()
                 }
                 Text(upgrade.name)
+                    .scaledToFit()
             }
             Spacer()
             VStack {
@@ -37,7 +38,7 @@ struct upgradeCell: View {
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(String("\(upgrade.price.formatted(.number.notation(.compactName)))dP"))
+                Text(String("\(upgrade.price.formatted(.number.notation(.compactName))) dP"))
             }
         }
         .frame(width: 230, height: 100)

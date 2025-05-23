@@ -41,7 +41,7 @@ struct ContentView: View {
         VStack {
             HStack{
                 Text(String(clicker.upgradeAdd))
-                Text("\(clicker.amountOfData.formatted(.number.notation(.compactName)))dP")
+                Text("\(clicker.amountOfData.formatted(.number.notation(.compactName))) dP")
                     .font(.title)
                     .onReceive(timer) { _ in
                         if autoClickerON {
