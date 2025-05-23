@@ -263,7 +263,7 @@ struct UpgradeView: View {
         .onChange(of: autoSave) {
             partsString = partsAvaliable.joined(separator: ",")
             upgradesString = upgradesAvaliable.joined(separator: ",")
-            calcEquaion = "(\(C) + \(M) + \(H) + \(S) × (\(G) + \(R) + \(P))"
+            calcEquaion = "(\(C) + \(M) + \(H) + \(S)) × (\(G) + \(R) + \(P))"
         }
     }
     

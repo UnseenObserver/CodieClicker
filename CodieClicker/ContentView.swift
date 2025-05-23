@@ -32,7 +32,7 @@ struct ContentView: View {
     @AppStorage("hardDriveStrength") var harDriveType: String = "blankPic"
     @AppStorage("ssdStrength") var ssdType: String = "blankPic"
     @AppStorage("rubberDuckSrength") var rubberDuckType: String = "blankPic"
-    @AppStorage("calcEquation") var calcEquation: String = "(1 + 0 + 0) * (1 + 0 + 0)"
+    @AppStorage("calcEquation") var calcEquation: String = "(1 + 0 + 0 + 0) * (1 + 0 + 0)"
     @AppStorage("holdFunction") var holdOn: Bool = false
     
     @Environment(\.modelContext) var modelContext
@@ -41,7 +41,6 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack{
-                Text(String(clicker.upgradeAdd))
                 Text("\(clicker.amountOfData.formatted(.number.notation(.compactName))) dP")
                     .font(.title)
                     .onReceive(timer) { _ in
@@ -56,7 +55,6 @@ struct ContentView: View {
                         clickerUpgradeMult = clicker.upgradeMult
                         autoSaveBool.toggle()
                     }
-                Text(String(clicker.upgradeMult))
             }
             
             TabView(selection: $selectedTab) {
