@@ -33,11 +33,6 @@ struct UpgradeView: View {
     @State var P: String = "0"
     @State var S: String = "0"
     
-    //        Theo Notes 🐶!
-    //        I would make it so that all first strength items get purchesed befor upgrading
-    //        The second ugrade takes way to long, so either make it cheaper or make the autoClicker cheaper
-    //        When the assets are done the pictures should already have a system to work
-    
     @State var upgrades: [String:Upgrade] = [
         "ACPU1" :Upgrade(name: "CPU", add: true, value: 1, price: 10, id: 0, type: "CPU", strength: 0),
         "BCPU2" :Upgrade(name: "CPU", add: true, value: 5, price: 750, id: 1, type: "CPU", strength: 1),
@@ -328,7 +323,7 @@ struct UpgradeView: View {
             hardDriveType = "hardDrive\(upgrade.strength)Pic"
             H = upgrade.value.formatted(.number.notation(.compactName))
         case "SSD":
-            ssdType = "ssf\(upgrade.strength)Pic"
+            ssdType = "ssd\(upgrade.strength)Pic"
         case "PWS":
             powerSupplyType = "powerSupply\(upgrade.strength)Pic"
             P = upgrade.value.formatted(.number.notation(.compactName))
