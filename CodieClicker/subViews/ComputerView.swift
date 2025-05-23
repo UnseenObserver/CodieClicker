@@ -169,6 +169,7 @@ struct ComputerView: View {
                 ramViewModel.toggleSizeWithAnimation()
                 motherBoardViewModel.toggleSizeWithAnimation()
                 powerSupplyViewModel.toggleSizeWithAnimation()
+                ssdViewModel.toggleSizeWithAnimation()
                 hardDriveViewModel.toggleSizeWithAnimation()
                 rubberDuckViewModel.toggleSizeWithAnimation()
                 counter += 1
