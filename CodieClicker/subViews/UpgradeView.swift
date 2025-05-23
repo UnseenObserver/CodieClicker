@@ -40,12 +40,12 @@ struct UpgradeView: View {
         "ACPU1" :Upgrade(name: "CPU", add: true, value: 1, price: 10, id: 0, type: "CPU", strength: 0),
         "BCPU2" :Upgrade(name: "CPU", add: true, value: 5, price: 750, id: 1, type: "CPU", strength: 1),
         "CCPU3" :Upgrade(name: "CPU", add: true, value: 100, price: 25000, id: 2, type: "CPU", strength: 2),
-        "DPU4" :Upgrade(name: "CPU", add: true, value: 1000, price: 10000000, id: 3, type: "CPU", strength: 3),
+        "DCPU4" :Upgrade(name: "CPU", add: true, value: 1000, price: 10000000, id: 3, type: "CPU", strength: 3),
         
         "AGPU1" :Upgrade(name: "GPU", add: false, value: 1, price: 500, id: 4, type: "GPU", strength: 0),
         "BGPU2" :Upgrade(name: "GPU", add: false, value: 2, price: 50000, id: 5, type: "GPU", strength: 1),
-        "CGPU3" :Upgrade(name: "GPU ", add: false, value: 5, price: 100000, id: 6, type: "GPU", strength: 2),
-        "DGPU4" :Upgrade(name: "Premium GPU ", add: false, value: 10, price: 1000000, id: 7, type: "GPU", strength: 3),
+        "CGPU3" :Upgrade(name: "GPU", add: false, value: 5, price: 100000, id: 6, type: "GPU", strength: 2),
+        "DGPU4" :Upgrade(name: "GPU", add: false, value: 10, price: 1000000, id: 7, type: "GPU", strength: 3),
         
         "ASSD1" :Upgrade(name: "SSD", add: true, value: 2, price: 75, id: 8, type: "SSD", strength: 0),
         "BSSD2" :Upgrade(name: "SSD", add: true, value: 10, price: 1500, id: 9, type: "SSD", strength: 1),
@@ -323,7 +323,7 @@ struct UpgradeView: View {
             ramType = "ram\(upgrade.strength)Pic"
             R = upgrade.value.formatted(.number.notation(.compactName))
         case "HRD":
-            hardDriveType = "cpu\(upgrade.strength)Pic"
+            hardDriveType = "hardDrive\(upgrade.strength)Pic"
             H = upgrade.value.formatted(.number.notation(.compactName))
         case "PWS":
             powerSupplyType = "powerSupply\(upgrade.strength)Pic"

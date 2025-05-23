@@ -14,12 +14,12 @@ struct upgradeCell: View {
         HStack {
             VStack(alignment: .center) {
                 if upgrade.add {
-                    Image(systemName: "plus")
+                    Image(picChange(upgrade: upgrade))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
                 } else {
-                    Image(systemName: "multiply")
+                    Image(picChange(upgrade: upgrade))
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
@@ -43,6 +43,30 @@ struct upgradeCell: View {
         }
         .frame(width: 230, height: 100)
     }
+    
+    func picChange(upgrade: Upgrade) -> String {
+        switch upgrade.type {
+        case "CPU":
+            return "cpu\(upgrade.strength)Pic"
+        case "GPU":
+            return "gpu\(upgrade.strength)Pic"
+        case "RAM":
+            return "ram\(upgrade.strength)Pic"
+        case "HRD":
+            return "hardDrive\(upgrade.strength)Pic"
+        case "PWS":
+            return "powerSupply\(upgrade.strength)Pic"
+        case "MTB":
+            return "motherBoard\(upgrade.strength)Pic"
+        case "RUB":
+            return "rubberDuck\(upgrade.strength)Pic"
+        case "SSD":
+            return "ssd\(upgrade.strength)Pic"
+        default:
+            return "error"
+        }
+    }
+    
 }
 
 
